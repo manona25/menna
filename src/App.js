@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [result, setResult] = useState(0);
+  const [inputValue, setInputValue] = useState(0);
+  
+  
+  const handleInputChange = (e) => {
+    setInputValue(Number(e.target.value) || 0);
+  };
+  
+  const add = () => {
+    setResult(result + inputValue);
+  };
+  
+  
+  const subtract = () => {
+    setResult(result - inputValue);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="number"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Enter number"
+      />
+      <button onClick={add}> + </button>
+      <button onClick={subtract}> - </button>
+      <div className="result">Result: {result}</div>
     </div>
   );
 }
